@@ -11,7 +11,7 @@ import { Item } from './item';
 })
 export class ItemService {
 
-  private apiURL = "https://jsonplaceholder.typicode.com";
+  private apiURL = "http://localhost:9090/app";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -22,7 +22,7 @@ export class ItemService {
 
   getAll(): Observable<any> {
 
-    return this.httpClient.get(this.apiURL + '/posts/')
+    return this.httpClient.get(this.apiURL + '/item')
 
       .pipe(
         catchError(this.errorHandler)

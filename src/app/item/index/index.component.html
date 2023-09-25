@@ -1,28 +1,34 @@
+<app-create></app-create>
+<br>
+<br>
 <div class="container">
-  <h1>Angular 14 CRUD Example - ItSolutionStuff.com</h1>
 
-  <a href="#" routerLink="/post/create/" class="btn btn-success">Create New Post</a>
+  <!--<a href="#" routerLink="/post/create/" class="btn btn-success">Create New Post</a>-->
 
-  <table class="table table-striped">
+  <table class="table">
     <thead>
     <tr>
-      <th>ID</th>
-      <th>Title</th>
-      <th>Body</th>
-      <th width="250px">Action</th>
+      <th class="text-center">ItemName</th>
+      <th class="text-center">ItemSellingPrice</th>
+      <th class="text-center">ItemBuyingPrice</th>
+      <th class="text-center">AvailableStatus</th>
+      <th class="text-center" width="250px">Action</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let post of posts">
-      <td>{{ post.id }}</td>
-      <td>{{ post.title }}</td>
-      <td>{{ post.body }}</td>
+      <td class="align-middle text-center ">{{ post.itemName }}</td>
+      <td class="align-middle text-center">{{ post.itemSellingPrice }}</td>
+      <td class="align-middle text-center">{{ post.itemBuyingPrice }}</td>
+      <td class="align-middle text-center">{{ post.isItemAvailable }}</td>
       <td>
-        <a href="#" [routerLink]="['/post/', post.id, 'view']" class="btn btn-info">View</a>
-        <a href="#" [routerLink]="['/post/', post.id, 'edit']" class="btn btn-primary">Edit</a>
-        <button type="button" (click)="deletePost(post.id)" class="btn btn-danger">Delete</button>
+        <a href="#" [routerLink]="['/post/', post.id, 'view']" class="btn btn-secondary m-1">View</a>
+        <a href="#" [routerLink]="['/post/', post.id, 'edit']" class="btn btn-secondary m-1">Edit</a>
+        <button type="button" (click)="deletePost(post.id)" class="btn btn-secondary m-1">Delete</button>
       </td>
     </tr>
     </tbody>
   </table>
 </div>
+
+

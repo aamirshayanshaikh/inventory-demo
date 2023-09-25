@@ -1,5 +1,8 @@
 export interface Item {
   id: number;
-  title: string;
-  body: string;
+  itemName: string;
+  itemEnteredByUser: string;
+  itemBuyingPrice: number;
+  itemSellingPrice: number;
+  isItemAvailable: string;
 }
