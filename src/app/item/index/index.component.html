@@ -1,7 +1,7 @@
 <app-create></app-create>
 <br>
 <br>
-<div class="container">
+<div class="container" #container>
 
   <!--<a href="#" routerLink="/post/create/" class="btn btn-success">Create New Post</a>-->
 
@@ -29,6 +29,12 @@
     </tr>
     </tbody>
   </table>
+  <ngb-pagination
+    [(page)]="page"
+    [pageSize]="pageSize"
+    [collectionSize]="totalElements"
+    (pageChange)="onPageChange($event)"
+  ></ngb-pagination>
 </div>
 
 

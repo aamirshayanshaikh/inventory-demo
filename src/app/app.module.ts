@@ -7,7 +7,6 @@ import {HttpClientModule} from "@angular/common/http";
 import {RouterModule, Routes} from "@angular/router";
 import {IndexComponent} from "./item/index/index.component";
 import {ViewComponent} from "./item/view/view.component";
-import {CreateComponent} from "./item/create/create.component";
 import {EditComponent} from "./item/edit/edit.component";
 
 const routes: Routes = [
@@ -28,7 +27,6 @@ const routes: Routes = [
     ItemModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
-
 
 
   ],

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
 import {  Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -20,9 +20,13 @@ export class ItemService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAll(): Observable<any> {
+  getAll(pageSize: number, page: number, sortBy: string): Observable<any> {
 
-    return this.httpClient.get(this.apiURL + '/item')
+    let params = new HttpParams()
+      .set('pageSize', pageSize.toString())
+      .set('page', page.toString())
+      .set('sortBy', sortBy);
+    return this.httpClient.get(this.apiURL + '/items-by-pagination', { params })
 
       .pipe(
         catchError(this.errorHandler)
@@ -31,7 +35,7 @@ export class ItemService {
 
   create(item:Item): Observable<any> {
 
-    return this.httpClient.post(this.apiURL + '/posts/', JSON.stringify(item), this.httpOptions)
+    return this.httpClient.post(this.apiURL + '/item/', JSON.stringify(item), this.httpOptions)
 
       .pipe(
         catchError(this.errorHandler)
