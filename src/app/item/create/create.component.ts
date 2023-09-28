@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {ItemService} from "../item.service";
+import {SharedService} from "../shared-service.service";
 
 @Component({
   selector: 'app-create',
@@ -14,7 +15,8 @@ export class CreateComponent implements OnInit {
 
   constructor(
     public postService: ItemService,
-    private router: Router
+    private router: Router,
+    private sharedService: SharedService
   ) { }
 
   /**
@@ -24,8 +26,9 @@ export class CreateComponent implements OnInit {
    */
   ngOnInit(): void {
     this.form = new FormGroup({
-      title: new FormControl('', [Validators.required]),
-      body: new FormControl('', Validators.required)
+      itemName: new FormControl('', [Validators.required]),
+      itemSellingPrice: new FormControl('', Validators.required),
+      itemBuyingPrice: new FormControl('', Validators.required)
     });
   }
 
@@ -43,8 +46,10 @@ export class CreateComponent implements OnInit {
     console.log(this.form.value);
     this.postService.create(this.form.value).subscribe(() => {
       console.log('Post created successfully!');
-      this.router.navigateByUrl('post/index');
+      this.sharedService.itemCreated.emit();
     })
   }
+
+
 
 }
