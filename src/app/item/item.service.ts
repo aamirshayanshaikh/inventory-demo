@@ -28,9 +28,7 @@ export class ItemService {
       .set('sortBy', sortBy);
     return this.httpClient.get(this.apiURL + '/items-by-pagination', { params })
 
-      .pipe(
-        catchError(this.errorHandler)
-      )
+
   }
 
   create(item:Item): Observable<any> {
@@ -54,7 +52,7 @@ export class ItemService {
 
   update(id:number, item:Item): Observable<any> {
 
-    return this.httpClient.put(this.apiURL + '/posts/' + id, JSON.stringify(item), this.httpOptions)
+    return this.httpClient.put(this.apiURL + '/item/' + id, JSON.stringify(item), this.httpOptions)
 
       .pipe(
         catchError(this.errorHandler)
@@ -63,7 +61,7 @@ export class ItemService {
 
 
   delete(id:number){
-    return this.httpClient.delete(this.apiURL + '/posts/' + id, this.httpOptions)
+    return this.httpClient.delete(this.apiURL + '/item/' + id, this.httpOptions)
 
       .pipe(
         catchError(this.errorHandler)

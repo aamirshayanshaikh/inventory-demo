@@ -1,0 +1,37 @@
+
+<div class="container" #container>
+
+  <!--<a href="#" routerLink="/post/create/" class="btn btn-success">Create New Post</a>-->
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th class="text-center">ItemName</th>
+      <th class="text-center">ItemSellingPrice</th>
+      <th class="text-center">ItemBuyingPrice</th>
+      <th class="text-center">AvailableStatus</th>
+      <th class="text-center" width="250px">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of items">
+      <td class="align-middle text-center ">{{ item.itemName }}</td>
+      <td class="align-middle text-center">{{ item.itemSellingPrice }}</td>
+      <td class="align-middle text-center">{{ item.itemBuyingPrice }}</td>
+      <td class="align-middle text-center">{{ item.isItemAvailable }}</td>
+      <td>
+        <a href="#" [routerLink]="['/post/', item.itemId, 'view']" class="btn btn-secondary m-1">View</a>
+        <button type="button" (click)="editPost(item)" class="btn btn-secondary m-1">Edit</button>
+        <button type="button" (click)="deletePost(item.itemId)" class="btn btn-secondary m-1">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <ngb-pagination
+    [(page)]="page"
+    [pageSize]="pageSize"
+    [collectionSize]="totalElements"
+    (pageChange)="onPageChange($event)"
+  ></ngb-pagination>
+</div>
+

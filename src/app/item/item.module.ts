@@ -4,18 +4,18 @@ import { CommonModule } from '@angular/common';
 import { ItemRoutingModule } from './item-routing.module';
 import { IndexComponent } from './index/index.component';
 import { ViewComponent } from './view/view.component';
-import { CreateComponent } from './create/create.component';
+import { GridComponent } from './create/grid.component';
 import { EditComponent } from './edit/edit.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {NgbPaginationModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbPaginationModule, NgbToastModule} from "@ng-bootstrap/ng-bootstrap";
 
 
 @NgModule({
   declarations: [
     IndexComponent,
     ViewComponent,
-    CreateComponent,
-    EditComponent
+    GridComponent,
+    EditComponent,
   ],
   exports: [
     IndexComponent
@@ -26,6 +26,7 @@ import {NgbPaginationModule} from "@ng-bootstrap/ng-bootstrap";
     ReactiveFormsModule,
     FormsModule,
     NgbPaginationModule,
+    NgbToastModule
 
   ]
 })

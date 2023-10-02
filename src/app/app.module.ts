@@ -5,17 +5,11 @@ import {AppComponent} from './app.component';
 import {ItemModule} from "./item/item.module";
 import {HttpClientModule} from "@angular/common/http";
 import {RouterModule, Routes} from "@angular/router";
-import {IndexComponent} from "./item/index/index.component";
-import {ViewComponent} from "./item/view/view.component";
-import {EditComponent} from "./item/edit/edit.component";
+import {GridComponent} from "./item/create/grid.component";
 
 const routes: Routes = [
-  {path: 'home', component: IndexComponent},
-  { path: 'post', redirectTo: 'post/index', pathMatch: 'full'},
-  { path: 'post/index', component: IndexComponent },
-  { path: 'post/:postId/view', component: ViewComponent },
-/*  { path: 'post/create', component: CreateComponent , pathMatch: 'full'},*/
-  { path: 'post/:postId/edit', component: EditComponent }
+  {path: '', component: GridComponent},
+
 ];
 
 @NgModule({

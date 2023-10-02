@@ -1,40 +1,57 @@
-<app-create></app-create>
-<br>
-<br>
-<div class="container" #container>
+<div class="container ms-auto">
+  <h4 class="text-center mt-4">Inventory Management System</h4>
 
-  <!--<a href="#" routerLink="/post/create/" class="btn btn-success">Create New Post</a>-->
+  <div *ngIf="showSuccessToast" class="success-message">{{message}}</div>
 
-  <table class="table">
-    <thead>
-    <tr>
-      <th class="text-center">ItemName</th>
-      <th class="text-center">ItemSellingPrice</th>
-      <th class="text-center">ItemBuyingPrice</th>
-      <th class="text-center">AvailableStatus</th>
-      <th class="text-center" width="250px">Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let post of posts">
-      <td class="align-middle text-center ">{{ post.itemName }}</td>
-      <td class="align-middle text-center">{{ post.itemSellingPrice }}</td>
-      <td class="align-middle text-center">{{ post.itemBuyingPrice }}</td>
-      <td class="align-middle text-center">{{ post.isItemAvailable }}</td>
-      <td>
-        <a href="#" [routerLink]="['/post/', post.id, 'view']" class="btn btn-secondary m-1">View</a>
-        <a href="#" [routerLink]="['/post/', post.id, 'edit']" class="btn btn-secondary m-1">Edit</a>
-        <button type="button" (click)="deletePost(post.id)" class="btn btn-secondary m-1">Delete</button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-  <ngb-pagination
-    [(page)]="page"
-    [pageSize]="pageSize"
-    [collectionSize]="totalElements"
-    (pageChange)="onPageChange($event)"
-  ></ngb-pagination>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+    <div class="form-group">
+      <label for="itemName">Item name:</label>
+      <input
+        [(ngModel)]="item.itemName"
+        formControlName="itemName"
+        id="itemName"
+        type="text"
+        class="form-control">
+      <div *ngIf="f['itemName'].touched && f['itemName'].invalid" class="alert alert-danger">
+        <div *ngIf="f['itemName'].errors && f['itemName'].errors['required']">Item is required.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="itemSellingPrice">Item selling price </label>
+      <input
+        [(ngModel)]="item.itemSellingPrice == 0 ? '' : item.itemSellingPrice"
+        formControlName="itemSellingPrice"
+        id="itemSellingPrice"
+        type="text"
+        class="form-control">
+      <div *ngIf="f['itemSellingPrice'].touched && f['itemSellingPrice'].invalid" class="alert alert-danger">
+        <div *ngIf="f['itemSellingPrice'].errors && f['itemSellingPrice'].errors['required']">Item selling price is required.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="itemBuyingPrice">Item buying price</label>
+      <input
+        [(ngModel)]="item.itemBuyingPrice == 0 ? '' : item.itemBuyingPrice"
+        formControlName="itemBuyingPrice"
+        id="itemBuyingPrice"
+        type="text"
+        class="form-control">
+      <div *ngIf="f['itemBuyingPrice'].touched && f['itemBuyingPrice'].invalid" class="alert alert-danger">
+        <div *ngIf="f['itemBuyingPrice'].errors && f['itemBuyingPrice'].errors['required']">Item buying price is required.</div>
+      </div>
+    </div>
+
+    <br>
+    <button class="btn btn-secondary" type="submit" [disabled]="!form.valid">{{ isUpdate ? 'Save' : 'Create' }}</button>
+  </form>
 </div>
+<br>
+<br>
+<item-grid (dataEmitted)="handleData($event)" ></item-grid>
+
 
 
